@@ -1,66 +1,124 @@
-			package com.example.demo.tarea.service;
+package com.example.demo.tarea.service;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.tarea.repository.EstudianteRepo;
 import com.example.demo.tarea.repository.modelo.Estudiante;
-import com.example.demo.tarea.repository.IEstudianteRepo;
 
 @Service
-public class EstudianteServiceImpl implements IEstudianteService {
+public class EstudianteServiceImpl implements EstudianteService {
 
 	@Autowired
-	IEstudianteRepo estudianteRepo;
-	
-	@Override
-	public Estudiante buscarPorNombre(String nombre) {
-		// TODO Auto-generated method stub
-		return this.estudianteRepo.buscarPorNombreQuery(nombre);
-	}
+	private EstudianteRepo estudianteRepo;
 
 	@Override
-	public Estudiante buscarPorApellido(String apellido) {
+	public void guardar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepo.buscarPorApellidoQuery(apellido);
+		this.estudianteRepo.insertar(estudiante);
+
 	}
 
 	@Override
 	public Estudiante buscarPorCedula(String cedula) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepo.buscarPorCedulaQuery(cedula);
+		return this.estudianteRepo.seleccionarPorCedula(cedula);
 	}
 
 	@Override
-	public Estudiante buscarPorFechaNacimiento(LocalDateTime fechaNacimiento) {
+	public void borrar(String cedula) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepo.buscarPorFechaNacimientoQuery(fechaNacimiento);
+		this.estudianteRepo.eliminar(cedula);
 	}
 
 	@Override
-	public Estudiante buscarPorGenero(String genero) {
+	public void actualizar(Estudiante estudiante) {
 		// TODO Auto-generated method stub
-		return this.estudianteRepo.buscarPorGeneroQuery(genero);
+		this.estudianteRepo.actualizar(estudiante);
 	}
 
-	public Estudiante buscarPorNombreTypedQuery(String nombre) {
-		return this.estudianteRepo.buscarPorNombreTypedQuery(nombre);
+	@Override
+	public Estudiante buscarPorApellido(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellido(apellido);
 	}
-	
+
+	@Override
+	public Estudiante buscarPorApellidoTyped(String apellido) {
+
+		return this.estudianteRepo.seleccionarPorApellidoTyped(apellido);
+	}
+
+	@Override
+	public List<Estudiante> reportePorApellido(String apellido) {
+		return this.estudianteRepo.seleccionarListaPorApellido(apellido);
+	}
+
+	@Override
+	public List<Estudiante> reportePorApellidoyNombre(String apellido, String nombre) {
+		return this.estudianteRepo.seleccionarListaPorApellidoyNombre(apellido, nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoNamedQuery(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellidoNamedTypedQuery(apellido);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoNamedTypedQuery(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellidoNamedQuery(apellido);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoNativeQuery(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellidoNativeQuery(apellido);
+	}
+
+	public Estudiante buscarPorApellidoNamedNativeQuery(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellidoNamedNativeQuery(apellido);
+	}
+
+	@Override
 	public Estudiante buscarPorNombreNamedQuery(String nombre) {
-		return this.estudianteRepo.buscarPorNombreNamedQuery(nombre);
+		return this.estudianteRepo.seleccionarPorNombreNamedQuery(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorNombreNamedNativeQuery(String nombre) {
+		return this.estudianteRepo.seleccionarPorNombreNamedNativeQuery(nombre);
+	}
+
+	@Override
+	public Estudiante buscarPorApellidoCriteriaAPIQuery(String apellido) {
+		return this.estudianteRepo.seleccionarPorApellidoCriteriaAPIQuery(apellido);
+	}
+
+	@Override
+	public Estudiante buscarEstudianteDinamico(String nombre, String apellido, Double peso) {
+
+		return this.estudianteRepo.seleccionarEstudianteDinamico(nombre, apellido, peso);
+	}
+
+	@Override
+	public int eliminarPorNombre(String nombre) {
+		
+		return this.estudianteRepo.eliminarPorNombre(nombre);
+	}
+
+	@Override
+	public int actualizarPorApellido(String nombre, String apellido) {
+		return this.estudianteRepo.actualizarPorApellido(nombre, apellido);
+	}
+
+	@Override
+	public Estudiante buscarEstudianteDinamicoFecha(String cedula, BigDecimal bono, LocalDate fechaNacimiento) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.seleccionarEstudianteDinamicoFecha(cedula, bono, fechaNacimiento);
 	}
 	
-	public Estudiante buscarPorNombreNamedQueryTyped(String nombre) {
-		return this.estudianteRepo.buscarPorNombreNamedQueryTyped(nombre);
-	}
 	
-	public Estudiante buscarPorNombreNativeQuery(String nombre) {
-		return this.estudianteRepo.buscarPorNombreNativeQuery(nombre);
-	}
-	public Estudiante buscarPorNombreNativeQueryTypedNamed(String nombre) {
-		return this.estudianteRepo.buscarPorNombreNativeQueryTypedNamed(nombre);
-	}
-	
+
 }

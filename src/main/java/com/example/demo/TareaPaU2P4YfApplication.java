@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,14 +12,14 @@ import com.example.demo.tarea.repository.modelo.Estudiante;
 
 
 
-import com.example.demo.tarea.service.IEstudianteService;
+import com.example.demo.tarea.service.EstudianteService;
 
 @SpringBootApplication
 public class TareaPaU2P4YfApplication implements CommandLineRunner{
 
 
 	@Autowired
-	private IEstudianteService estudianteService;
+	private EstudianteService estudianteService;
 	
 	
 	
@@ -31,19 +32,10 @@ public class TareaPaU2P4YfApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		
+		
+		Estudiante estudiante1 = this.estudianteService.buscarEstudianteDinamicoFecha("123456744",new BigDecimal(250) , LocalDate.of(2000, 01, 01));
 
-		//CREATE
-		Estudiante estu = this.estudianteService.buscarPorNombreTypedQuery("Mabel");
-		System.out.println("consulta 1: "+estu);		
-		
-		estu = this.estudianteService.buscarPorNombreNamedQuery("Mabel");
-		System.out.println("consulta 2: "+estu);
-		
-		estu = this.estudianteService.buscarPorNombreNamedQueryTyped("Mabel");
-		System.out.println("consulta 3: "+estu);
-		
-		estu = this.estudianteService.buscarPorNombreNativeQuery("Mabel");
-		System.out.println("consulta 4: "+estu);
+		System.out.println(estudiante1);
 	}
 
 }
