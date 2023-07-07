@@ -291,4 +291,22 @@ public class EstudianteRepoImpl implements EstudianteRepo {
 		return myTypedQuery.getSingleResult();
 	}
 
+	@Override
+	public int eliminarPorBono(BigDecimal bono) {
+		Query myQuery = this.entityManager.createQuery("delete from Estudiante e where e.bono=:datoBono");
+		myQuery.setParameter("datoBono", bono);
+
+		return myQuery.executeUpdate();		
+	}
+
+	@Override
+	public int actualizarPorEstatura(Double peso, Double estatura) {
+		Query myQuery = this.entityManager.createQuery(""
+				+ "update Estudiante e set e.peso=:datoPeso where e.estatura=:datoEstatura");
+		myQuery.setParameter("datoPeso", peso);
+		myQuery.setParameter("datoEstatura", estatura);
+
+		return myQuery.executeUpdate();
+	}
+
 }

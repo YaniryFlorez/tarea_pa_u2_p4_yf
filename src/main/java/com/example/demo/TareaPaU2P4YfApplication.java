@@ -33,9 +33,21 @@ public class TareaPaU2P4YfApplication implements CommandLineRunner{
 		// TODO Auto-generated method stub
 		
 		
-		Estudiante estudiante1 = this.estudianteService.buscarEstudianteDinamicoFecha("123456744",new BigDecimal(250) , LocalDate.of(2000, 01, 01));
+		//Estudiante estudiante1 = this.estudianteService.buscarEstudianteDinamicoFecha("123456744",new BigDecimal(250) , LocalDate.of(2000, 01, 01));
 
-		System.out.println(estudiante1);
+		//System.out.println(estudiante1);
+		
+
+		//int nActualizados= this.estudianteService.actualizarPorApellido("nombre2", "apellido1");
+		//System.out.println("Numero de actualizados: "+nActualizados);
+		
+		int nEliminados= this.estudianteService.eliminarPorBono(new BigDecimal(150));
+		System.out.println("Numero de eliminados por bono de 150: "+nEliminados);
+		
+		int nActualizados= this.estudianteService.actualizarPorEstatura(1.65, 70.7 );
+		System.out.println("Numero de actualizados: "+nActualizados);
+		
+	
 	}
 
 }

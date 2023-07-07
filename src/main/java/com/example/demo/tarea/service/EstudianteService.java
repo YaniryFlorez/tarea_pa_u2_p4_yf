@@ -45,5 +45,11 @@ public interface EstudianteService {
 	
 	public int eliminarPorNombre(String nombre);
 	
+	public int eliminarPorBono(BigDecimal bono);
+
+	
 	public int actualizarPorApellido(String nombre, String apellido);
+	
+	public int actualizarPorEstatura(Double peso, Double estatura);
+
 }

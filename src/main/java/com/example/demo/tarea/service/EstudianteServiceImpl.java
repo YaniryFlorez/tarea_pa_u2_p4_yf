@@ -118,6 +118,18 @@ public class EstudianteServiceImpl implements EstudianteService {
 		// TODO Auto-generated method stub
 		return this.estudianteRepo.seleccionarEstudianteDinamicoFecha(cedula, bono, fechaNacimiento);
 	}
+
+	@Override
+	public int eliminarPorBono(BigDecimal bono) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.eliminarPorBono(bono);
+	}
+
+	@Override
+	public int actualizarPorEstatura(Double peso, Double estatura) {
+		// TODO Auto-generated method stub
+		return this.estudianteRepo.actualizarPorEstatura(peso, estatura);
+	}
 	
 	
 
