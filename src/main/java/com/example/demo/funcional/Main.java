@@ -20,70 +20,26 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
-		LOG.info("Metodos High Order");
-		// Supplier
-		LOG.info("Supplier");
-		// 1. Clase
-		IPersonaSupplier<String> supplierHO = new PersonaSupplierImpl();
-		MetodosHighOrder.metodoSupplier(supplierHO);
-
-		// 2. Lambda
-
-		MetodosHighOrder.metodoSupplier(() -> "17123456789HO");
-
-		// 3. metodos referenciados
-		LOG.info("Metodo referenciado>>");
-		MetodosHighOrder.metodoSupplier(MetodosReferenciados::getIdHO);
-
-		// Consumer
-		LOG.info("Consumer");
-		// 1. Clase
-		MetodosHighOrder.metodoConsumer(new PersonaConsumerImpl(), "Maria");
-
-		// 2. Lambda
-		MetodosHighOrder.metodoConsumer((str) -> LOG.info("lambda " + str), "Mario");
-
-		// 3. metodos referenciados
-		LOG.info("Metodo referenciado>>");
-		MetodosHighOrder.metodoConsumer(MetodosReferenciados::acceptar, "Luis");
-
-		// Predicate
-		LOG.info("Predicate");
-		// 1.- Clase
-		MetodosHighOrder.metodoPredicate(new PersonaPredicateImpl(), 25);
-
-		// 2.- Lambda
-		MetodosHighOrder.metodoPredicate((numero) -> {
-			LOG.info("Lambda HO");
-			return numero.compareTo(0) >= 0;
-		}, -8);
-		LOG.info("Metodo referenciado>>");
-		// 3.- Metodos referenciados
-		MetodosHighOrder.metodoPredicate(MetodosReferenciados::evaluar, 3);
-
-		// Function
-		LOG.info("Function");
-		// 1.- Clase
-		MetodosHighOrder.metodoFunction(new PersonaFunctionImpl(), "12345");
-
-		// 2.- Lambda
-		MetodosHighOrder.metodoFunction((arg) -> Integer.valueOf(arg) * 1000, "67890");
-		LOG.info("Metodo referenciado>>");
-		// 3.- Metodos referenciados
-		MetodosHighOrder.metodoFunction(MetodosReferenciados::aplicar, "11234");
-
-		// Unary operator
-		LOG.info("Unary operator");
-		// 1.- Clase
-		MetodosHighOrder.metodoUnaryOperator(new PersonaUnaryOperatorImpl(), "metodo Unary Operator");
-
-		// 2.- Lambda
-		MetodosHighOrder.metodoUnaryOperator((cadena) -> cadena + "Lambda Unary O", "metodo Unary Operator");
-		LOG.info("Metodo referenciado>>");
-		// 3.- Metodos referenciados
-		MetodosHighOrder.metodoUnaryOperator(MetodosReferenciados::aplicarStrStr, "abcd");
-
+		LOG.info(" Librerías funcionales en JAVA");
+		// 1.- Supplier
+		Stream<Integer> listaStreams = Stream.generate(MetodosReferenciados::getSuppier).limit(5);
+		
+		// 2.- Consumer
+		listaStreams.forEach(MetodosReferenciados::acceptCosumer);
+		
+		// 3.- Predicate
+		LOG.info("3.- Predicate");
+		List<Integer> listaArray = Arrays.asList(1, 2, 3, 4, 5);
+		listaArray.stream().filter(MetodosReferenciados::testPredicate).forEach((arg)->LOG.info(arg+"predicate"));;
+		
+		// 4.- Function
+		LOG.info("4.- Funtion");
+		listaArray.stream().map(MetodosReferenciados::applyFunction).forEach(LOG::info);
+		
+		//5.- Unary operator
+		LOG.info("5.- Unary operator");
+		listaArray.replaceAll(MetodosReferenciados::appyUnaryOperator);
+		LOG.info(listaArray.toString());
 		
 	}
 
